@@ -1,0 +1,266 @@
+.station-card {
+    height: 100%;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    background: var(--bs-body-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.station-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.station-card .card-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.station-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.station-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bs-body-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.status-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+}
+
+.station-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.5rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--bs-secondary);
+    font-size: 0.9rem;
+}
+
+.info-item i {
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.station-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.75rem;
+    margin: 0.5rem 0;
+}
+
+.metric {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    border-radius: 6px;
+    background: var(--bs-gray-100);
+}
+
+.metric i {
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.station-services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.service-badge {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    background: var(--bs-gray-200);
+    color: var(--bs-gray-700);
+}
+
+.station-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.navigate-btn,
+.details-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.navigate-btn i,
+.details-btn i {
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .station-info {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .card-body {
+        padding: 0.75rem;
+    }
+
+    .station-name {
+        font-size: 1rem;
+    }
+
+    .info-item,
+    .metric {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .station-card {
+        margin-bottom: 0.5rem;
+    }
+
+    .station-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .station-info {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    .station-metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .station-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .navigate-btn,
+    .details-btn {
+        padding: 0.75rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .card-body {
+        padding: 0.75rem;
+    }
+
+    .station-name {
+        font-size: 0.95rem;
+    }
+
+    .status-badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+    }
+
+    .station-info {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+    }
+
+    .info-item {
+        font-size: 0.8rem;
+    }
+
+    .station-metrics {
+        gap: 0.5rem;
+    }
+
+    .metric {
+        font-size: 0.8rem;
+        padding: 0.4rem;
+    }
+
+    .service-badge {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.4rem;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+    .station-card {
+        margin-bottom: 0.75rem;
+    }
+
+    .station-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .station-card:active {
+        background-color: var(--bs-gray-100);
+    }
+
+    .navigate-btn,
+    .details-btn {
+        min-height: 44px;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .station-card {
+        background: var(--bs-gray-900);
+        border-color: var(--bs-gray-800);
+    }
+
+    .station-name {
+        color: var(--bs-light);
+    }
+
+    .info-item {
+        color: var(--bs-gray-400);
+    }
+
+    .metric {
+        background: var(--bs-gray-800);
+        color: var(--bs-light);
+    }
+
+    .service-badge {
+        background: var(--bs-gray-800);
+        color: var(--bs-gray-300);
+    }
+
+    .station-card:active {
+        background-color: var(--bs-gray-800);
+    }
+}

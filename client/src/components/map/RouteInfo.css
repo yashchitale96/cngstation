@@ -1,0 +1,230 @@
+.route-info {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 350px;
+    max-height: calc(100vh - 40px);
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.route-info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    background: #f8f9fa;
+    border-radius: 8px 8px 0 0;
+}
+
+.route-info-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    color: #666;
+    transition: color 0.2s;
+}
+
+.close-button:hover {
+    color: #333;
+}
+
+.route-summary {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.summary-item i {
+    font-size: 1.5rem;
+    color: #4285F4;
+}
+
+.summary-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-details .label {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.summary-details .value {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.route-steps {
+    padding: 20px;
+}
+
+.route-steps h4 {
+    margin: 0 0 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #333;
+}
+
+.route-steps h4 i {
+    color: #4285F4;
+}
+
+.steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.step-item {
+    display: flex;
+    gap: 15px;
+}
+
+.step-number {
+    width: 24px;
+    height: 24px;
+    background: #4285F4;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-text {
+    margin: 0 0 8px 0;
+    color: #333;
+    line-height: 1.4;
+}
+
+.step-details {
+    display: flex;
+    gap: 15px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.step-distance,
+.step-time {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.step-details i {
+    font-size: 0.9rem;
+    color: #4285F4;
+}
+
+.confidence {
+    display: block;
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 2px;
+}
+
+.confidence[title*="ml"] {
+    color: #4285F4;
+}
+
+@media (max-width: 768px) {
+    .route-info {
+        top: auto;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        max-height: 60vh;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .route-info-header {
+        padding: 12px 16px;
+    }
+
+    .route-summary {
+        padding: 16px;
+    }
+
+    .route-steps {
+        padding: 16px;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .route-info {
+        background: #1a1a1a;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .route-info-header {
+        background: #242424;
+        border-bottom-color: #333;
+    }
+
+    .route-info-header h3 {
+        color: #fff;
+    }
+
+    .close-button {
+        color: #999;
+    }
+
+    .close-button:hover {
+        color: #fff;
+    }
+
+    .summary-details .label {
+        color: #999;
+    }
+
+    .summary-details .value {
+        color: #fff;
+    }
+
+    .route-steps h4 {
+        color: #fff;
+    }
+
+    .step-text {
+        color: #eee;
+    }
+
+    .step-details {
+        color: #999;
+    }
+
+    .route-summary,
+    .route-steps {
+        border-bottom-color: #333;
+    }
+}

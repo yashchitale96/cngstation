@@ -1,0 +1,362 @@
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    display: flex;
+}
+
+.map-sidebar {
+    width: 400px;
+    height: 100%;
+    background: white;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.map-content {
+    flex: 1;
+    height: 100%;
+    position: relative;
+}
+
+.leaflet-container {
+    width: 100%;
+    height: 100%;
+}
+
+.map-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.control-button {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.control-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.control-button:active {
+    transform: translateY(0);
+}
+
+.control-button i {
+    font-size: 1.2rem;
+    color: #2c3e50;
+}
+
+.control-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.toggle-sidebar {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+}
+
+.route-info-container {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    max-height: 40vh;
+    overflow-y: auto;
+}
+
+.user-location-marker {
+    position: relative;
+}
+
+.station-marker {
+    position: relative;
+}
+
+.station-point {
+    width: 24px;
+    height: 24px;
+    background-color: #e74c3c;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    position: relative;
+}
+
+.station-point::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: white;
+    border-radius: 50%;
+    top: 6px;
+    left: 6px;
+}
+
+.pulse {
+    width: 16px;
+    height: 16px;
+    background-color: #4285F4;
+    border-radius: 50%;
+    position: relative;
+}
+
+.pulse::after {
+    content: '';
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-color: #4285F4;
+    border-radius: 50%;
+    top: -8px;
+    left: -8px;
+    animation: pulse 2s infinite;
+    opacity: 0.4;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.5);
+        opacity: 0.4;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 0.2;
+    }
+    100% {
+        transform: scale(0.5);
+        opacity: 0.4;
+    }
+}
+
+/* Custom Scrollbar */
+.map-sidebar::-webkit-scrollbar,
+.route-info-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.map-sidebar::-webkit-scrollbar-track,
+.route-info-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.map-sidebar::-webkit-scrollbar-thumb,
+.route-info-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.map-sidebar::-webkit-scrollbar-thumb:hover,
+.route-info-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Loading Indicator */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #4285F4;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Leaflet Routing Machine custom styles */
+.leaflet-routing-container {
+    background: white;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.leaflet-routing-alt {
+    max-height: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .map-sidebar {
+        width: 350px;
+    }
+}
+
+@media (max-width: 992px) {
+    .map-sidebar {
+        width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .map-container {
+        flex-direction: column;
+    }
+
+    .map-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50vh;
+        transform: translateY(-100%);
+    }
+
+    .map-sidebar.show {
+        transform: translateY(0);
+    }
+
+    .map-content {
+        height: 100vh;
+    }
+
+    .toggle-sidebar {
+        display: block;
+    }
+
+    .route-info-container {
+        width: 95%;
+        bottom: 20px;
+        max-height: 35vh;
+    }
+}
+
+@media (max-width: 576px) {
+    .map-controls {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .route-info-container {
+        bottom: 80px;
+    }
+
+    .control-button {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+    .control-button {
+        padding: 12px;
+    }
+
+    .map-sidebar::-webkit-scrollbar,
+    .route-info-container::-webkit-scrollbar {
+        width: 0;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .map-sidebar,
+    .route-info-container,
+    .control-button {
+        background: #1a1a1a;
+        color: #ffffff;
+    }
+
+    .control-button i {
+        color: #ffffff;
+    }
+
+    .loading-overlay {
+        background: rgba(26, 26, 26, 0.8);
+    }
+
+    .loading-spinner {
+        border-color: #2a2a2a;
+        border-top-color: #4285F4;
+    }
+
+    .leaflet-routing-container {
+        background: #1a1a1a;
+        color: #fff;
+    }
+
+    .leaflet-routing-alt {
+        background: #1a1a1a;
+        color: #fff;
+    }
+
+    .leaflet-routing-alt h2 {
+        color: #fff;
+    }
+
+    .leaflet-routing-alt tr:hover {
+        background: #2a2a2a;
+    }
+
+    .leaflet-tile {
+        filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+    }
+
+    .leaflet-container {
+        background: #242f3e;
+    }
+
+    .map-container [class*="gm-style"] {
+        background-color: #242f3e !important;
+    }
+
+    .leaflet-control-attribution {
+        background: rgba(0, 0, 0, 0.5) !important;
+        color: #fff !important;
+    }
+
+    .leaflet-control-attribution a {
+        color: #4285F4 !important;
+    }
+}

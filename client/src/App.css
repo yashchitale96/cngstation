@@ -1,0 +1,326 @@
+.App {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-header {
+    padding: 1rem;
+    background: linear-gradient(135deg, #4285F4, #34A853);
+    color: white;
+    margin-bottom: 0;
+}
+
+.app-header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.app-header p {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-bottom: 0;
+}
+
+.app-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-container {
+    flex: 1;
+    display: flex;
+    padding: 0;
+}
+
+.map-section {
+    flex: 1;
+    position: relative;
+    min-height: 400px;
+}
+
+.list-section {
+    width: 400px;
+    background: white;
+    border-left: 1px solid #e0e0e0;
+    overflow-y: auto;
+}
+
+.toggle-list {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #4285F4;
+    color: white;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggle-list:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.toggle-list i {
+    font-size: 1.5rem;
+}
+
+.alert-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1100;
+    width: 90%;
+    max-width: 500px;
+}
+
+/* Loading State */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #4285F4;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .list-section {
+        width: 350px;
+    }
+}
+
+@media (max-width: 992px) {
+    .app-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .list-section {
+        width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+
+    .map-section {
+        order: 1;
+        height: 60vh;
+    }
+
+    .list-section {
+        order: 2;
+        width: 100%;
+        height: 40vh;
+        border-left: none;
+        border-top: 1px solid #e0e0e0;
+    }
+
+    .toggle-list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .list-section.hidden {
+        display: none;
+    }
+
+    .map-section.expanded {
+        height: calc(100vh - 76px);
+    }
+}
+
+@media (max-width: 576px) {
+    .app-header {
+        padding: 0.75rem;
+    }
+
+    .app-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .app-header p {
+        font-size: 0.9rem;
+    }
+
+    .alert-container {
+        width: 95%;
+        top: 10px;
+    }
+
+    .map-section {
+        height: 50vh;
+    }
+
+    .list-section {
+        height: 50vh;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+    .toggle-list:hover {
+        transform: none;
+    }
+
+    .list-section {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .App {
+        background-color: #1a1a1a;
+        color: #ffffff;
+    }
+
+    .list-section {
+        background: #1a1a1a;
+        border-color: #333333;
+    }
+
+    .loading-overlay {
+        background: rgba(26, 26, 26, 0.9);
+    }
+
+    .loading-spinner {
+        border-color: #333333;
+        border-top-color: #4285F4;
+    }
+}
+
+.map-container {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 120px);
+  min-height: 500px;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+}
+
+.locate-me {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  padding: 8px;
+  border-radius: 4px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.locate-me img {
+  width: 20px;
+  height: 20px;
+}
+
+.station-list {
+  height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.station-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.station-card:hover {
+  transform: translateY(-2px);
+}
+
+.station-card .card-title {
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.station-card .card-text > div {
+  margin-bottom: 8px;
+}
+
+.station-card .badge {
+  font-size: 0.9em;
+  padding: 6px 10px;
+  margin-left: 5px;
+}
+
+.route-instructions {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* OpenLayers Controls */
+.ol-control {
+  background-color: rgba(255,255,255,0.9) !important;
+  border-radius: 4px !important;
+  padding: 2px !important;
+}
+
+.ol-control button {
+  background-color: #007bff !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 2px !important;
+  margin: 1px !important;
+}
+
+.ol-control button:hover {
+  background-color: #0056b3 !important;
+}
+
+/* Make the app responsive */
+@media (max-width: 768px) {
+  .map-container {
+    height: 50vh;
+  }
+  
+  .station-list {
+    height: 50vh;
+  }
+}
